@@ -1,62 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Permohonan Komputer Riba</title>
-<link rel="stylesheet" href="style.css">
+    <title>Permohonan Komputer Riba</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-<h2 class="title">Borang Permohonan Skim Pinjaman Komputer Riba</h2>
+        <h2 class="title">Borang Permohonan Skim Pinjaman Komputer Riba</h2>
 
-<form class="form" action="proses.php" method="POST">
+        <form class="form" action="proses.php" method="POST">
 
-<label class="label">Nama Penuh</label>
-<input type="text" name="nama" class="input">
+            <label class="label">Nama Penuh</label>
+            <input type="text" name="nama" class="input">
 
-<label class="label">No Telefon</label>
-<input type="number" name="telefon" class="input">
+            <label class="label">No Telefon</label>
+            <input type="number" name="telefon" class="input">
 
-<label class="label">Tarikh Permohonan</label>
-<input type="date" name="tarikh" class="input">
+            <label class="label">Tarikh Permohonan</label>
+            <input type="date" name="tarikh" class="input">
 
-<label class="label">Program Pengajian</label>
-<select name="program" class="input">
-<option value="">-- Pilih Program --</option>
-<option value="Diploma IT">Diploma IT</option>
-<option value="Diploma Kejuruteraan">Diploma Kejuruteraan</option>
-<option value="Diploma Perniagaan">Diploma Perniagaan</option>
-</select>
+            <label class="label">Program Pengajian</label>
+            <select name="program" class="input">
+                <option value="">-- Pilih Program --</option>
+                <option value="Diploma IT">Diploma IT</option>
+                <option value="Diploma Kejuruteraan">Diploma Kejuruteraan</option>
+                <option value="Diploma Perniagaan">Diploma Perniagaan</option>
+            </select>
 
-<label class="label">Spesifikasi Laptop</label>
+            <label class="label">Spesifikasi Laptop</label>
 
-<input type="checkbox" name="spec[]" value="RAM 8GB" class="checkbox"> RAM 8GB
-<input type="checkbox" name="spec[]" value="RAM 16GB" class="checkbox"> RAM 16GB
-<input type="checkbox" name="spec[]" value="SSD 512GB" class="checkbox"> SSD 512GB
+            <input type="checkbox" name="spec[]" value="RAM 8GB" class="checkbox"> RAM 8GB
+            <input type="checkbox" name="spec[]" value="RAM 16GB" class="checkbox"> RAM 16GB
+            <input type="checkbox" name="spec[]" value="SSD 512GB" class="checkbox"> SSD 512GB
 
-<br><br>
+            <br><br>
 
-<label class="label">Tujuan Penggunaan</label>
+            <label class="label">Tujuan Penggunaan</label>
 
-<input type="radio" name="guna" value="Belajar" class="radio"> Belajar
-<input type="radio" name="guna" value="Programming" class="radio"> Programming
-<input type="radio" name="guna" value="Design" class="radio"> Design
+            <input type="radio" name="guna" value="Belajar" class="radio"> Belajar
+            <input type="radio" name="guna" value="Programming" class="radio"> Programming
+            <input type="radio" name="guna" value="Design" class="radio"> Design
 
-<br><br>
+            <br><br>
 
-<label class="label">Alasan Permohonan</label>
-<textarea name="alasan" class="textarea"></textarea>
+            <label class="label">Alasan Permohonan</label>
+            <textarea name="alasan" class="textarea"></textarea>
 
-<br><br>
+            <br><br>
 
-<button type="submit" name="submitBtn" class="btn">Hantar</button>
-<button type="reset" name="resetBtn" class="btn">Reset</button>
+            <button type="submit" name="submitBtn" class="btn">Hantar</button>
+            <button type="reset" name="resetBtn" class="btn">Reset</button>
 
-</form>
+        </form>
 
-</div>
+    </div>
 
 </body>
 </html>
