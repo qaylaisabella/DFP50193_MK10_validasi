@@ -1,80 +1,53 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Semakan Permohonan</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+<?php
+session_start();
 
-<body>
+$nama    = isset($_POST['nama']) ? trim($_POST['nama']) : "";
+$telefon = isset($_POST['telefon']) ? trim($_POST['telefon']) : "";
+$tarikh  = isset($_POST['tarikh']) ? trim($_POST['tarikh']) : "";
+$program = isset($_POST['program']) ? trim($_POST['program']) : "";
+$guna    = isset($_POST['guna']) ? trim($_POST['guna']) : "";
+$alasan  = isset($_POST['alasan']) ? trim($_POST['alasan']) : "";
+$spec    = isset($_POST['spec']) ? $_POST['spec'] : [];
 
-    <div class="container">
+$errorMsg = [];
 
-        <h2 class="title">Keputusan Permohonan</h2>
+if ($nama == "") {
+    $errorMsg[] = "Nama tidak boleh kosong";
+}
 
-        <?php
+if ($telefon == "") {
+    $errorMsg[] = "No telefon tidak boleh kosong";
+}
 
-        $nama    = isset($_POST['nama']) ? $_POST['nama'] : "";
-        $telefon = isset($_POST['telefon']) ? $_POST['telefon'] : "";
-        $tarikh  = isset($_POST['tarikh']) ? $_POST['tarikh'] : "";
-        $program = isset($_POST['program']) ? $_POST['program'] : "";
-        $guna    = isset($_POST['guna']) ? $_POST['guna'] : "";
-        $alasan  = isset($_POST['alasan']) ? $_POST['alasan'] : "";
+if ($tarikh == "") {
+    $errorMsg[] = "Tarikh tidak boleh kosong";
+}
 
-        $error = false;
+if ($program == "") {
+    $errorMsg[] = "Program mesti dipilih";
+}
 
-        if ($nama == "") {
-            echo "<p class='error'>Nama tidak boleh kosong</p>";
-            $error = true;
-        }
+if ($guna == "") {
+    $errorMsg[] = "Tujuan penggunaan mesti dipilih";
+}
 
-        if ($telefon == "") {
-            echo "<p class='error'>No telefon tidak boleh kosong</p>";
-            $error = true;
-        }
+if ($alasan == "") {
+    $errorMsg[] = "Alasan tidak boleh kosong";
+} elseif (strlen($alasan) < 25) {
+    $errorMsg[] = "Alasan mesti sekurang-kurangnya 25 aksara";
+}
 
-        if ($tarikh == "") {
-            echo "<p class='error'>Tarikh tidak boleh kosong</p>";
-            $error = true;
-        }
+// simpan data dalam session
+$_SESSION['nama'] = $nama;
+$_SESSION['telefon'] = $telefon;
+$_SESSION['tarikh'] = $tarikh;
+$_SESSION['program'] = $program;
+$_SESSION['guna'] = $guna;
+$_SESSION['alasan'] = $alasan;
+$_SESSION['spec'] = $spec;
+$_SESSION['errorMsg'] = $errorMsg;
 
-        if ($program == "") {
-            echo "<p class='error'>Program mesti dipilih</p>";
-            $error = true;
-        }
-
-        if ($guna == "") {
-            echo "<p class='error'>Tujuan penggunaan mesti dipilih</p>";
-            $error = true;
-        }
-
-        if ($alasan == "") {
-            echo "<p class='error'>Alasan tidak boleh kosong</p>";
-            $error = true;
-        }
-
-        if (strlen($alasan) < 25) {
-            echo "<p class='error'>Alasan mesti sekurang-kurangnya 25 aksara</p>";
-            $error = true;
-        }
-
-        if ($error == false) {
-
-            echo "<p class='success'>Permohonan berjaya dihantar!</p>";
-
-            echo "<p>Nama: $nama</p>";
-            echo "<p>No Telefon: $telefon</p>";
-            echo "<p>Tarikh: $tarikh</p>";
-            echo "<p>Program: $program</p>";
-            echo "<p>Tujuan Penggunaan: $guna</p>";
-            echo "<p>Alasan: $alasan</p>";
-        }
-
-        ?>
-
-        <br>
-        <a href="index.php" class="link">Kembali ke Borang</a>
-
-    </div>
-
-</body>
-</html>
+// redirect ke semakan
+header("Location: semakan.php");
+exit();
+?>
