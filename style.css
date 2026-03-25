@@ -78,18 +78,6 @@ body {
     background: linear-gradient(45deg, #00c6ff, #4facfe);
 }
 
-.error {
-    color: #ff3333;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.success {
-    color: #2ecc71;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
 .link {
     display: inline-block;
     margin-top: 20px;
@@ -103,4 +91,56 @@ body {
 
 .link:hover {
     background: #2a7bdc;
+}
+
+.error-box {
+    background-color: #ffe6e6;
+    color: #cc0000;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.success-box {
+    background: #d4edda;
+    color: #155724;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* ========================= */
+/* RESULT (ALIGN KIRI KANAN) */
+/* ========================= */
+
+.result-box {
+    margin-top: 20px;
+}
+
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.result-label {
+    font-weight: bold;
+    color: #333;
+    width: 45%;
+}
+
+.result-value {
+    color: #555;
+    width: 55%;
+    text-align: right;
+    word-break: break-word;
+}
+
+/* button tengah */
+.button-group {
+    text-align: center;
+    margin-top: 20px;
 }

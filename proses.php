@@ -1,53 +1,72 @@
 <?php
 session_start();
 
-$nama    = isset($_POST['nama']) ? trim($_POST['nama']) : "";
-$telefon = isset($_POST['telefon']) ? trim($_POST['telefon']) : "";
-$tarikh  = isset($_POST['tarikh']) ? trim($_POST['tarikh']) : "";
-$program = isset($_POST['program']) ? trim($_POST['program']) : "";
-$guna    = isset($_POST['guna']) ? trim($_POST['guna']) : "";
-$alasan  = isset($_POST['alasan']) ? trim($_POST['alasan']) : "";
-$spec    = isset($_POST['spec']) ? $_POST['spec'] : [];
-
-$errorMsg = [];
-
-if ($nama == "") {
-    $errorMsg[] = "Nama tidak boleh kosong";
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Location: index.php');
+    exit();
 }
 
-if ($telefon == "") {
-    $errorMsg[] = "No telefon tidak boleh kosong";
+$nama = trim($_POST['nama'] ?? '');
+$telefon = trim($_POST['telefon'] ?? '');
+$tarikh = trim($_POST['tarikh'] ?? '');
+$program = trim($_POST['program'] ?? '');
+$guna = trim($_POST['guna'] ?? '');
+$alasan = trim($_POST['alasan'] ?? '');
+$spec = $_POST['spec'] ?? [];
+
+$errors = [];
+$inputs = [
+    'nama' => $nama,
+    'telefon' => $telefon,
+    'tarikh' => $tarikh,
+    'program' => $program,
+    'guna' => $guna,
+    'alasan' => $alasan,
+    'spec' => $spec
+];
+
+if ($nama === '') {
+    $errors[] = 'Nama penuh belum diisi.';
 }
 
-if ($tarikh == "") {
-    $errorMsg[] = "Tarikh tidak boleh kosong";
+if ($telefon === '') {
+    $errors[] = 'No telefon belum diisi.';
+} elseif (!preg_match('/^[0-9]{10,11}$/', $telefon)) {
+    $errors[] = 'No telefon mesti mengandungi 10 hingga 11 nombor sahaja.';
 }
 
-if ($program == "") {
-    $errorMsg[] = "Program mesti dipilih";
+if ($tarikh === '') {
+    $errors[] = 'Tarikh permohonan belum dipilih.';
 }
 
-if ($guna == "") {
-    $errorMsg[] = "Tujuan penggunaan mesti dipilih";
+if ($program === '') {
+    $errors[] = 'Program pengajian belum dipilih.';
 }
 
-if ($alasan == "") {
-    $errorMsg[] = "Alasan tidak boleh kosong";
+if (empty($spec)) {
+    $errors[] = 'Spesifikasi laptop belum dipilih.';
+}
+
+if ($guna === '') {
+    $errors[] = 'Tujuan penggunaan belum dipilih.';
+}
+
+if ($alasan === '') {
+    $errors[] = 'Alasan permohonan belum diisi.';
 } elseif (strlen($alasan) < 25) {
-    $errorMsg[] = "Alasan mesti sekurang-kurangnya 25 aksara";
+    $errors[] = 'Alasan permohonan mesti sekurang-kurangnya 25 aksara.';
 }
 
-// simpan data dalam session
-$_SESSION['nama'] = $nama;
-$_SESSION['telefon'] = $telefon;
-$_SESSION['tarikh'] = $tarikh;
-$_SESSION['program'] = $program;
-$_SESSION['guna'] = $guna;
-$_SESSION['alasan'] = $alasan;
-$_SESSION['spec'] = $spec;
-$_SESSION['errorMsg'] = $errorMsg;
+if (!empty($errors)) {
+    $_SESSION['errors'] = $errors;
+    $_SESSION['inputs'] = $inputs;
 
-// redirect ke semakan
-header("Location: semakan.php");
+    header('Location: index.php');
+    exit();
+}
+
+$_SESSION['success_data'] = $inputs;
+
+header('Location: view.php');
 exit();
 ?>
