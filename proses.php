@@ -59,8 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
         'alasan' => $alasan
     ];
 
-    header('Location: view.php');
-    exit();
+
 }
 
 header('Location: index.php');
