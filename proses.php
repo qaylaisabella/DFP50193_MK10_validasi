@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-<<<<<<< HEAD
 $_SESSION['inputs'] = $_POST;
 
 $nama = trim($_POST['nama'] ?? '');
@@ -59,7 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
         'alasan' => $alasan
     ];
 
-
+    header('Location: view.php');
+    exit();
 }
 
 header('Location: index.php');
