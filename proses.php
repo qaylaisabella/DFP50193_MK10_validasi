@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+<<<<<<< HEAD
 $_SESSION['inputs'] = $_POST;
 
 $nama = trim($_POST['nama'] ?? '');
